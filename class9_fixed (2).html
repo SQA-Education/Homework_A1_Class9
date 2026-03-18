@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQA Education - A1 Class 9 Homework</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;min-height:100vh;padding:0}.header{background:linear-gradient(135deg,#5B5091 0%,#7B6DB5 100%);padding:25px 20px;text-align:center;color:#fff}.header img{width:160px;margin-bottom:10px}.logo-text{font-size:22px;font-weight:700;letter-spacing:1px}.level-badge{display:inline-block;background:#F5A623;color:#fff;padding:4px 16px;border-radius:20px;font-size:13px;font-weight:700;margin:8px 0}.header h1{font-size:20px;margin:5px 0 2px}.header p{font-size:14px;opacity:.85}.container{max-width:640px;margin:0 auto;padding:15px}.card{background:#fff;border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(91,80,145,.1)}.card h2{color:#5B5091;font-size:18px;margin-bottom:12px}.card h2 span{font-size:14px;color:#F5A623}.progress{background:#e8e4f5;border-radius:10px;height:8px;margin-bottom:15px;overflow:hidden}.progress-bar{background:linear-gradient(90deg,#5B5091,#F5A623);height:100%;border-radius:10px;transition:width .5s}.progress-text{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:4px}.section{display:none}.section.active{display:block}.name-input{width:100%;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:16px;margin:10px 0;outline:none}.name-input:focus{border-color:#5B5091}.class-select{width:100%;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:15px;margin:10px 0;outline:none;background:#fff;color:#333;appearance:auto}.class-select:focus{border-color:#5B5091}.btn{display:inline-block;padding:12px 28px;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}.btn-primary{background:#5B5091;color:#fff}.btn-primary:hover{background:#4a4080;transform:translateY(-1px)}.btn-orange{background:#F5A623;color:#fff}.btn-orange:hover{background:#e09510;transform:translateY(-1px)}.btn-secondary{background:#e8e4f5;color:#5B5091}.btn-secondary:hover{background:#d8d2ec}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.nav-buttons{display:flex;justify-content:space-between;margin-top:20px;gap:10px}.audio-controls{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}.audio-btn{padding:10px 18px;border:2px solid #5B5091;background:#fff;color:#5B5091;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}.audio-btn:hover{background:#5B5091;color:#fff}.transcript{background:#f8f7fc;border-radius:12px;padding:16px;margin:12px 0;line-height:1.8;font-size:15px;border-left:4px solid #5B5091;display:none}.transcript .speaker{font-weight:700;color:#5B5091}.q-block{background:#f8f7fc;border-radius:12px;padding:16px;margin:10px 0}.q-block p{font-weight:600;color:#333;margin-bottom:8px}.q-option{display:block;padding:10px 14px;margin:4px 0;border:2px solid #e0dce8;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px}.q-option:hover{border-color:#5B5091;background:#f0edf6}.q-option.selected{border-color:#5B5091;background:#e8e4f5;font-weight:600}.q-option.correct{border-color:#27ae60;background:#e8f8f0;color:#27ae60}.q-option.wrong{border-color:#e74c3c;background:#fde8e8;color:#e74c3c}.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.vocab-word,.vocab-def{padding:12px;border-radius:10px;text-align:center;cursor:pointer;font-size:14px;font-weight:600;transition:all .2s;min-height:50px;display:flex;align-items:center;justify-content:center}.vocab-word{background:#5B5091;color:#fff;border:2px solid #5B5091}.vocab-def{background:#fff;color:#333;border:2px solid #e0dce8}.vocab-word.selected{background:#F5A623;border-color:#F5A623;transform:scale(1.05)}.vocab-def.selected{border-color:#F5A623;background:#fff8e8;transform:scale(1.05)}.vocab-word.matched,.vocab-def.matched{opacity:.5;cursor:default;transform:none}.vocab-word.correct,.vocab-def.correct{border-color:#27ae60;background:#e8f8f0;color:#27ae60}.match-feedback{text-align:center;padding:8px;font-weight:600;border-radius:8px;margin:8px 0;display:none}.writing-area{width:100%;min-height:120px;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:15px;font-family:inherit;resize:vertical;outline:none;line-height:1.6}.writing-area:focus{border-color:#5B5091}.word-count{text-align:right;font-size:12px;color:#888;margin-top:4px}.writing-prompt{background:#f8f7fc;border-radius:12px;padding:16px;margin:10px 0;border-left:4px solid #F5A623}.example-box{background:#e8f8f0;border-radius:10px;padding:12px;margin:8px 0;font-size:14px;color:#333}.example-box strong{color:#5B5091}.feedback-box{background:#f0fdf4;border:2px solid #27ae60;border-radius:12px;padding:16px;margin:12px 0;display:none}.feedback-box h3{color:#27ae60;margin-bottom:8px}.mic-btn{width:80px;height:80px;border-radius:50%;background:#5B5091;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:15px auto;transition:all .2s}.mic-btn:hover{background:#4a4080;transform:scale(1.05)}.mic-btn:disabled{background:#ccc;cursor:not-allowed;transform:none}.mic-btn.recording{background:#e74c3c;animation:pulse-rec 1.5s infinite}.mic-btn svg{width:36px;height:36px;fill:#fff}@keyframes pulse-rec{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,.4)}50%{box-shadow:0 0 0 15px rgba(231,76,60,0)}}.status-text{text-align:center;color:#666;margin:8px 0;font-size:14px}.timer{text-align:center;font-size:24px;font-weight:700;color:#5B5091;margin:5px 0}.recording-list{margin:12px 0}.recording-item{background:#f8f7fc;border-radius:10px;padding:12px;margin:8px 0;display:flex;align-items:center;gap:10px}.recording-item audio{flex:1;height:36px}.speaking-prompt{background:#f8f7fc;border-radius:12px;padding:16px;margin:12px 0;border-left:4px solid #5B5091}.score-card{background:linear-gradient(135deg,#5B5091,#7B6DB5);border-radius:20px;padding:30px;text-align:center;color:#fff;margin:16px 0}.score-big{font-size:56px;font-weight:800}.score-label{font-size:14px;opacity:.8;margin-bottom:15px}.score-detail{display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;margin-top:15px}.score-item{background:rgba(255,255,255,.15);border-radius:12px;padding:10px 16px;min-width:100px}.score-item .num{font-size:20px;font-weight:700}.score-item .lbl{font-size:11px;opacity:.7}.submit-success{background:#e8f8f0;border:2px solid #27ae60;border-radius:12px;padding:16px;margin:12px 0;display:none;text-align:center}.submit-success h3{color:#27ae60}</style>
+</head>
+<body>
+<div class="header">
+<img src="../logo.png" onerror="this.outerHTML='<div class=\'logo-text\'>📚 SQA Education</div>'" alt="SQA Education">
+<div class="level-badge">CEFR Level A1 - Beginner</div>
+<h1>📘 Class 9 Homework: Shopping & Asking Prices</h1>
+<p>Practical Skills 1 — Week 5</p>
+</div>
+<div class="container">
+<div class="section active" id="s0"><div class="card">
+<h2>Welcome to Your Homework! 🎉</h2>
+<p style="color:#555;margin-bottom:10px">Complete all 5 sections to finish your homework.</p>
+<div style="margin:16px 0"><label style="font-weight:600;color:#5B5091">Your Name:</label>
+<input type="text" class="name-input" id="studentName" placeholder="Type your full name here..."></div>
+<div style="margin:10px 0"><label style="font-weight:600;color:#5B5091">Your Class:</label>
+<select class="class-select" id="studentClass"><option value="">-- Select your class --</option>
+<option value="3087 - Mon/Wed 11:00 AM - Eunice Salazar">3087 — Mon/Wed 11:00 AM – PS1 (A1) – Eunice Salazar</option>
+<option value="3097 - Tue/Thu 6:30 PM - Eunice Salazar">3097 — Tue/Thu 6:30 PM – PS1 (A1) – Eunice Salazar</option></select></div>
+<button class="btn btn-primary" onclick="startHomework()" style="width:100%">Start Homework →</button>
+</div></div>
+
+<div class="section" id="s1"><div class="card">
+<div class="progress-text"><span>Section 1 of 5</span><span>20%</span></div>
+<div class="progress"><div class="progress-bar" style="width:20%"></div></div>
+<h2>🎧 1. Listening <span>— At the Market</span></h2>
+<p style="color:#555;margin-bottom:10px">Listen to the conversation and answer the questions.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="playAudio()">▶️ Play</button>
+<button class="audio-btn" onclick="pauseAudio()">⏸️ Pause</button>
+<button class="audio-btn" onclick="stopAudio()">⏹️ Stop</button>
+<button class="audio-btn" onclick="toggleTranscript()">📄 Show Text</button>
+</div>
+<div class="transcript" id="transcript"><p><span class="speaker">Anna:</span> Hi Lisa. Where do you buy your vegetables?</p>
+<p><span class="speaker">Lisa:</span> I buy them at the farmer's market.</p>
+<p><span class="speaker">Anna:</span> How much are the tomatoes there?</p>
+<p><span class="speaker">Lisa:</span> They are 2 dollars a pound.</p>
+<p><span class="speaker">Anna:</span> That's good! The supermarket sells them for 3 dollars.</p>
+<p><span class="speaker">Lisa:</span> I also buy bread and eggs there.</p>
+<p><span class="speaker">Anna:</span> How much are the eggs?</p>
+<p><span class="speaker">Lisa:</span> They are 4 dollars a dozen. Very fresh!</p>
+</div>
+<div id="listenQuestions"><div class="q-block"><p>1. Where does Lisa buy vegetables?</p>
+<label class="q-option" onclick="selectQ(this,'lq1','a')">At the supermarket</label>
+<label class="q-option" onclick="selectQ(this,'lq1','b')">At the farmer's market</label>
+<label class="q-option" onclick="selectQ(this,'lq1','c')">At the bakery</label>
+</div>
+<div class="q-block"><p>2. How much are the tomatoes?</p>
+<label class="q-option" onclick="selectQ(this,'lq2','a')">$3 a pound</label>
+<label class="q-option" onclick="selectQ(this,'lq2','b')">$4 a pound</label>
+<label class="q-option" onclick="selectQ(this,'lq2','c')">$2 a pound</label>
+</div>
+<div class="q-block"><p>3. What else does Lisa buy at the market?</p>
+<label class="q-option" onclick="selectQ(this,'lq3','a')">Milk and cheese</label>
+<label class="q-option" onclick="selectQ(this,'lq3','b')">Bread and eggs</label>
+<label class="q-option" onclick="selectQ(this,'lq3','c')">Meat and rice</label>
+</div>
+</div>
+<div class="nav-buttons"><div></div><button class="btn btn-primary" onclick="checkListening()">Check & Continue →</button></div>
+</div></div>
+
+<div class="section" id="s2"><div class="card">
+<div class="progress-text"><span>Section 2 of 5</span><span>40%</span></div>
+<div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+<h2>📚 2. Vocabulary <span>— Shopping Places</span></h2>
+<p style="color:#555;margin-bottom:6px">Tap a store in purple, then tap what you buy there in white.</p>
+<div class="match-feedback" id="matchFeedback"></div>
+<div class="vocab-grid" id="vocabGrid"></div>
+<p id="vocabScore" style="text-align:center;font-weight:600;color:#5B5091;margin:8px 0"></p>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s1')">← Back</button>
+<button class="btn btn-primary" id="vocabNext" onclick="goTo('s3')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s3"><div class="card">
+<div class="progress-text"><span>Section 3 of 5</span><span>60%</span></div>
+<div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+<h2>✍️ 3. Writing <span>— Where Do You Shop?</span></h2>
+<div class="writing-prompt"><p><strong>Write 5 sentences about where you buy things. Use "I buy... at the..."</strong></p></div>
+<div class="example-box"><strong>Example:</strong> I buy bread at the bakery. I buy medicine at the pharmacy. I buy clothes at the department store. How much are the shoes? The shoes are $45.</div>
+<textarea class="writing-area" id="writingText" placeholder="Write here..." oninput="countWords()"></textarea>
+<div class="word-count"><span id="wc">0</span> words</div>
+<button class="btn btn-orange" onclick="checkWriting()" style="width:100%;margin-top:8px">Get Feedback ✏️</button>
+<div class="feedback-box" id="writingFeedback"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s2')">← Back</button>
+<button class="btn btn-primary" id="writingNext" onclick="goTo('s4')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s4"><div class="card">
+<div class="progress-text"><span>Section 4 of 5</span><span>80%</span></div>
+<div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+<h2>🎤 4. Speaking <span>— Shopping Conversation</span></h2>
+<div class="speaking-prompt"><p><strong>Record yourself:</strong></p><p style="margin-top:8px">Record yourself saying:<br>1. Where do you buy [food]? I buy it at the [store].<br>2. How much is the [item]? It is [price].<br>3. How much are the [items]? They are [price].<br>4. I like to shop at [store].</p></div>
+<div class="status-text" id="statusText">Tap the microphone to start recording</div>
+<div class="timer" id="recTimer" style="display:none">0:00</div>
+<button class="mic-btn" id="micBtn" onclick="toggleRec()"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+<div class="recording-list" id="recordings"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s3')">← Back</button>
+<button class="btn btn-primary" id="speakNext" onclick="goTo('s5')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s5"><div class="card">
+<div class="progress-text"><span>Section 5 of 5</span><span>100%</span></div>
+<div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+<h2>📖 5. Grammar <span>— How Much Is/Are & Shopping</span></h2>
+<div id="grammarQs"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s4')">← Back</button>
+<button class="btn btn-orange" onclick="submitFinal()" style="min-width:180px">Submit Homework ✓</button></div>
+</div></div>
+
+<div class="container">
+<div class="section" id="results">
+<div class="score-card"><p style="opacity:.8">🎉 Great job completing your homework!</p>
+<div class="score-big" id="totalPct">0%</div><div class="score-label">Total Score</div>
+<div class="score-detail">
+<div class="score-item"><div class="num" id="scL">0/3</div><div class="lbl">Listening</div></div>
+<div class="score-item"><div class="num" id="scV">0/6</div><div class="lbl">Vocabulary</div></div>
+<div class="score-item"><div class="num" id="scW">0/20</div><div class="lbl">Writing</div></div>
+<div class="score-item"><div class="num" id="scS">0/20</div><div class="lbl">Speaking</div></div>
+<div class="score-item"><div class="num" id="scG">0/8</div><div class="lbl">Grammar</div></div>
+</div></div>
+<div class="card" style="text-align:center">
+<button class="btn btn-orange" onclick="submitToTeacher()" id="submitBtn" style="width:100%;font-size:16px;padding:14px">📤 Submit to Teacher</button>
+<div class="submit-success" id="submitSuccess"><h3>✅ Submitted!</h3><p>Your homework has been sent to your teacher.</p></div>
+<p style="color:#888;font-size:12px;margin-top:8px">This will open a Google Form with your scores and writing feedback.</p>
+</div></div>
+</div>
+</div>
+
+<script>
+const SESSION='Class 9';let sn='',sClass='',sc={l:0,v:0,w:0,s:0,g:0};let writingText='';
+const answers={lq1:'b',lq2:'c',lq3:'b',};let selectedQ={};
+const dialogue=[{s:'Anna',t:'Hi Lisa. Where do you buy your vegetables?',g:'f'},{s:'B',t:'I buy them at the farmer\'s market.',g:'f'},{s:'Anna',t:'How much are the tomatoes there?',g:'f'},{s:'B',t:'They are 2 dollars a pound.',g:'f'},{s:'Anna',t:'That\'s good! The supermarket sells them for 3 dollars.',g:'f'},{s:'B',t:'I also buy bread and eggs there.',g:'f'},{s:'Anna',t:'How much are the eggs?',g:'f'},{s:'B',t:'They are 4 dollars a dozen. Very fresh!',g:'f'},];
+const vocabPairs=[{w:'Supermarket',d:'Buy rice, milk, and food'},{w:'Bakery',d:'Buy bread and cake'},{w:'Pharmacy',d:'Buy medicine'},{w:'Bookstore',d:'Buy books'},{w:'Farmers Market',d:'Buy fresh fruits and vegetables'},{w:'Department Store',d:'Buy clothes and shoes'},];
+function goTo(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function startHomework(){sn=document.getElementById('studentName').value.trim();sClass=document.getElementById('studentClass').value;if(!sn){alert('Please enter your name');return}if(!sClass){alert('Please select your class');return}goTo('s1')}
+let synth=window.speechSynthesis,utterance=null,dIdx=0;
+function getVoice(gender){
+  const voices=synth.getVoices();
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  if(!eng.length) return voices[0]||null;
+  const femaleNames=/samantha|karen|fiona|victoria|zira|moira|tessa|allison|ava|susan|sara|female/i;
+  const maleNames=/daniel|david|james|alex|fred|tom|gordon|oliver|male/i;
+  if(gender==='f'){const fv=eng.find(v=>femaleNames.test(v.name)&&!/male/i.test(v.name));return fv||eng[0];}
+  else{const mv=eng.find(v=>maleNames.test(v.name)&&!/female/i.test(v.name));return mv||(eng[1]||eng[0]);}
+}
+function speakLine(){
+  if(dIdx>=dialogue.length) return;
+  const line=dialogue[dIdx];
+  utterance=new SpeechSynthesisUtterance(line.t);
+  const gender=line.g||(line.s==='Sara'||line.s==='Anna'||line.s==='Lisa'||line.s==='A'?'f':'m');
+  utterance.voice=getVoice(gender);
+  utterance.rate=gender==='f'?0.9:0.8;
+  utterance.pitch=gender==='f'?1.4:0.6;
+  utterance.onend=()=>{dIdx++;setTimeout(speakLine,600)};
+  synth.speak(utterance);
+}
+function playAudio(){synth.cancel();dIdx=0;if(synth.getVoices().length===0){speechSynthesis.onvoiceschanged=()=>speakLine();return}speakLine()}
+function pauseAudio(){synth.pause()}function stopAudio(){synth.cancel();dIdx=0}
+function toggleTranscript(){const t=document.getElementById('transcript');t.style.display=t.style.display==='none'?'block':'none'}
+if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=()=>{};
+function selectQ(el,qid,val){el.parentElement.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedQ[qid]=val}
+function checkListening(){let c=0;Object.keys(answers).forEach(qid=>{if(selectedQ[qid]===answers[qid])c++;const block=document.querySelectorAll('.q-block')[Object.keys(answers).indexOf(qid)];block.querySelectorAll('.q-option').forEach(o=>{const v=o.getAttribute('onclick').match(/'([^']*)'\)$/)[1];if(v===answers[qid])o.classList.add('correct');else if(o.classList.contains('selected'))o.classList.add('wrong')})});sc.l=c;goTo('s2')}
+let selWord=null,selDef=null,matched=0;
+function initVocab(){const grid=document.getElementById('vocabGrid');grid.innerHTML='';[...vocabPairs].sort(()=>Math.random()-.5).forEach(p=>{const el=document.createElement('div');el.className='vocab-word';el.textContent=p.w;el.dataset.idx=vocabPairs.indexOf(p);el.onclick=()=>pickWord(el);grid.appendChild(el)});[...vocabPairs].sort(()=>Math.random()-.5).forEach(p=>{const el=document.createElement('div');el.className='vocab-def';el.textContent=p.d;el.dataset.idx=vocabPairs.indexOf(p);el.onclick=()=>pickDef(el);grid.appendChild(el)})}
+function pickWord(el){if(el.classList.contains('matched'))return;document.querySelectorAll('.vocab-word').forEach(w=>w.classList.remove('selected'));el.classList.add('selected');selWord=el;tryMatch()}
+function pickDef(el){if(el.classList.contains('matched'))return;document.querySelectorAll('.vocab-def').forEach(d=>d.classList.remove('selected'));el.classList.add('selected');selDef=el;tryMatch()}
+function tryMatch(){if(!selWord||!selDef)return;const fb=document.getElementById('matchFeedback');fb.style.display='block';if(selWord.dataset.idx===selDef.dataset.idx){selWord.classList.add('matched','correct');selDef.classList.add('matched','correct');matched++;sc.v=matched;fb.textContent='✅ Correct!';fb.style.background='#e8f8f0';fb.style.color='#27ae60';document.getElementById('vocabScore').textContent=matched+'/'+vocabPairs.length+' matched';if(matched===vocabPairs.length)document.getElementById('vocabNext').disabled=false}else{fb.textContent='❌ Try again!';fb.style.background='#fde8e8';fb.style.color='#e74c3c'}selWord.classList.remove('selected');selDef.classList.remove('selected');selWord=null;selDef=null;setTimeout(()=>{fb.style.display='none'},1200)}
+initVocab();
+function countWords(){const t=document.getElementById('writingText').value.trim();document.getElementById('wc').textContent=t?t.split(/\s+/).length:0}
+let mediaRec=null,chunks=[],isRec=false,recStart=0,recInterval=null,recCount=0;
+function toggleRec(){if(!isRec)startRec();else stopRec_()}
+let spokenTranscript='';
+let recognition=null;
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SpeechRecognition){
+  recognition=new SpeechRecognition();recognition.continuous=true;recognition.interimResults=true;recognition.lang='en-US';
+}
+function startRec(){
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    spokenTranscript='';let ft='';
+    if(recognition){
+      recognition.onresult=e=>{
+        let interim='';
+        for(let i=e.resultIndex;i<e.results.length;i++){
+          if(e.results[i].isFinal) ft+=e.results[i][0].transcript+' ';
+          else interim+=e.results[i][0].transcript;
+        }
+        const combined=(ft+interim).trim();
+        document.getElementById('speakTranscriptText').textContent=combined;
+        document.getElementById('speakTranscriptBox').style.display='block';
+        spokenTranscript=ft.trim();
+      };
+      recognition.onerror=()=>{};
+      try{recognition.start();}catch(e){}
+    }
+    mediaRec=new MediaRecorder(stream);chunks=[];
+    mediaRec.ondataavailable=e=>chunks.push(e.data);
+    mediaRec.onstop=()=>{
+      if(recognition){try{recognition.stop();}catch(e){}}
+      const blob=new Blob(chunks,{type:'audio/webm'});const url=URL.createObjectURL(blob);
+      const list=document.getElementById('recordings');list.innerHTML='';
+      const item=document.createElement('div');item.className='recording-item';
+      item.innerHTML='<span style="font-weight:600;color:#5B5091">🎙️ Recording</span><audio controls src="'+url+'"></audio>';
+      list.appendChild(item);
+      setTimeout(()=>scoreSpeaking(),600);
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRec.start();isRec=true;
+    document.getElementById('micBtn').classList.add('recording');
+    document.getElementById('statusText').textContent='🔴 Recording... Tap to stop when finished';
+    document.getElementById('recTimer').style.display='block';
+    recStart=Date.now();
+    recInterval=setInterval(()=>{
+      const s=Math.floor((Date.now()-recStart)/1000);
+      document.getElementById('recTimer').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+    },1000);
+  }).catch(()=>{alert('Microphone access needed. / Se necesita acceso al micrófono. / يجب الوصول إلى الميكروفون.')});
+}
+function scoreSpeaking(){
+  const t=spokenTranscript||document.getElementById('speakTranscriptText').textContent||'';
+  let pts=0;const details=[];
+  if(/where do you buy|i buy (it|them)? at the/i.test(t)){pts+=5;details.push('✅ Said where you buy something')}
+  else{details.push('❌ Missing "Where do you buy...? I buy it at the [store]"')}
+  if(/how much is/i.test(t)){pts+=5;details.push('✅ Asked "How much is...?"')}
+  else{details.push('❌ Missing "How much is the [item]?"')}
+  if(/how much are/i.test(t)){pts+=5;details.push('✅ Asked "How much are...?"')}
+  else{details.push('❌ Missing "How much are the [items]?"')}
+  if(/i like to shop|i shop at|i like (the )?(supermarket|market|store|mall|walmart|target|publix|costco)/i.test(t)){pts+=5;details.push('✅ Said where you like to shop')}
+  else{details.push('❌ Missing "I like to shop at [store]"')}
+  if(!SpeechRecognition&&t===''){pts=16;details.length=0;details.push('⚠️ Auto-check not available. Teacher will review your recording.');}
+  sc.s=pts;
+  const fb=document.getElementById('speakFeedback');
+  let msg='<h3>🎤 Speaking Score: '+pts+'/20</h3><ul style="margin:8px 0;padding-left:20px">';
+  details.forEach(d=>msg+='<li style="margin:4px 0">'+d+'</li>');msg+='</ul>';
+  if(pts===20) msg+='<p style="color:#27ae60;font-weight:600">Perfect! 🌟</p>';
+  else if(pts>=12) msg+='<p style="color:#F5A623;font-weight:600">Good! Try again to include the missing phrases.</p>';
+  else if(pts>0) msg+='<p>Keep practicing! Say each phrase as a complete sentence.</p>';
+  else msg+='<p>Could not detect speech. Please try again — speak clearly.</p>';
+  if(pts<20) msg+='<button class="btn btn-secondary" onclick="resetSpeaking()" style="margin-top:10px">🔄 Try Again</button>';
+  fb.innerHTML=msg;fb.style.display='block';
+  // Always enable Continue after a recording attempt
+  document.getElementById('speakNext').disabled=false;
+  if(pts>0){document.getElementById('statusText').textContent='Done! Review your score below.';}
+  else{document.getElementById('statusText').textContent='Recording saved. Try again for a better score.';}
+}
+function resetSpeaking(){
+  document.getElementById('speakFeedback').style.display='none';
+  document.getElementById('speakTranscriptBox').style.display='none';
+  document.getElementById('speakTranscriptText').textContent='';
+  document.getElementById('recordings').innerHTML='';
+  document.getElementById('statusText').textContent='Tap the microphone to start recording';
+  spokenTranscript='';
+}
+function stopRec_(){if(mediaRec&&mediaRec.state==='recording')mediaRec.stop();isRec=false;clearInterval(recInterval);document.getElementById('micBtn').classList.remove('recording');document.getElementById('statusText').textContent='Tap the microphone to record again';document.getElementById('recTimer').style.display='none'}
+function initGrammar(){const c=document.getElementById('grammarQs');c.innerHTML='';grammarData.forEach((g,i)=>{let h='<div class="q-block"><p>'+(i+1)+'. '+g.q+'</p>';g.opts.forEach((o,j)=>{h+='<label class="q-option" onclick="selGrammar('+i+','+j+',this)">'+String.fromCharCode(97+j)+') '+o+'</label>'});h+='</div>';c.innerHTML+=h})}
+function selGrammar(qi,oi,el){el.parentElement.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');grammarSel[qi]=oi}
+function submitFinal(){let gc=0;grammarData.forEach((g,i)=>{if(grammarSel[i]===g.ans)gc++;const block=document.querySelectorAll('#grammarQs .q-block')[i];block.querySelectorAll('.q-option').forEach((o,j)=>{if(j===g.ans)o.classList.add('correct');else if(j===grammarSel[i])o.classList.add('wrong')})});sc.g=gc;const total=sc.l+sc.v+sc.w+sc.s+sc.g;const pct=Math.round(total/57*100);document.getElementById('totalPct').textContent=pct+'%';document.getElementById('scL').textContent=sc.l+'/3';document.getElementById('scV').textContent=sc.v+'/6';document.getElementById('scW').textContent=sc.w+'/20';document.getElementById('scS').textContent=sc.s+'/20';document.getElementById('scG').textContent=sc.g+'/8';goTo('results')}
+
+function submitToTeacher(){
+  const pct=Math.round((sc.l+sc.v+sc.w+sc.s+sc.g)/57*100);
+  const wt=writingText||document.getElementById('writingText').value.trim()||'';
+  const url='https://docs.google.com/forms/d/e/1FAIpQLSfxgLZofrw5wLjtEaU9K0xgJWqztxigBXxpHCXe2Ndi3UOpnQ/viewform?usp=pp_url'
+  +'&entry.154629934='+encodeURIComponent(sn||document.getElementById('studentName').value.trim())
+  +'&entry.771629595='+encodeURIComponent(sClass||document.getElementById('studentClass').value||'')
+  +'&entry.1564061356='+encodeURIComponent(SESSION)
+  +'&entry.1994438750='+encodeURIComponent(sc.l+'/3')
+  +'&entry.1169985852='+encodeURIComponent(sc.v+'/6')
+  +'&entry.66378887='+encodeURIComponent(sc.w+'/20')
+  +'&entry.665897330='+encodeURIComponent(sc.s+'/20')
+  +'&entry.1528226896='+encodeURIComponent(sc.g+'/8')
+  +'&entry.543147037='+encodeURIComponent(pct+'%')
+  +'&entry.301386877='+encodeURIComponent(wt)
+  +'&entry.1451249480='+encodeURIComponent('Eunice');
+  window.open(url,'_blank');
+  document.getElementById('submitSuccess').style.display='block';
+  document.getElementById('submitBtn').disabled=true;
+}
+
+function checkWriting(){const t=document.getElementById('writingText').value.trim();if(t.split(/\s+/).length<8){alert('Please write at least 5 sentences.');return}
+let pts=0;writingText=t;const lower=t.toLowerCase();let details=[];
+if(/i buy/i.test(t)){pts+=5;details.push('✅ Used "I buy..." structure')}else{details.push('❌ Missing "I buy..." sentence')}
+if(/at the/i.test(t)){pts+=5;details.push('✅ Mentioned a store location')}else{details.push('❌ Missing store location (use "at the...")')}
+if(/how much/i.test(t)){pts+=5;details.push('✅ Used "How much" question')}else{details.push('❌ Try asking "How much is/are...?"')}
+if(/\$\d+|\d+\s*dollar/i.test(t)){pts+=5;details.push('✅ Mentioned a price')}else{details.push('❌ Try mentioning a price')}
+
+sc.w=pts;let msg='<h3>✅ Feedback</h3><p><strong>Score: '+pts+'/20</strong></p><ul style="margin:8px 0;padding-left:20px">';details.forEach(d=>msg+='<li>'+d+'</li>');msg+='</ul>';
+if(pts>=16)msg+='<p style="color:#27ae60;font-weight:600">Excellent work!</p>';else if(pts>=10)msg+='<p>Good effort! Try to include all key elements.</p>';else msg+='<p>Keep practicing! Review the example above.</p>';
+document.getElementById('writingFeedback').innerHTML=msg;document.getElementById('writingFeedback').style.display='block';document.getElementById('writingNext').disabled=false}
+const grammarData=[{q:'How much _____ the book?',opts:['is','are','do'],ans:0},{q:'How much _____ the shoes?',opts:['is','are','does'],ans:1},{q:'I buy bread _____ the bakery.',opts:['in','on','at'],ans:2},{q:'Where _____ you buy medicine?',opts:['do','does','is'],ans:0},{q:'The shirt _____ $25.',opts:['cost','costs','costing'],ans:1},{q:'_____ do you buy vegetables?',opts:['How','Where','What'],ans:1},{q:'She buys clothes _____ the mall.',opts:['in','at','on'],ans:1},{q:'How much _____ a cup of coffee?',opts:['is','are','do'],ans:0},];let grammarSel={};
+</script>
+</body></html>
