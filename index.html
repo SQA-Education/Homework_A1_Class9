@@ -133,7 +133,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;
 <p><span class="speaker">Carlos:</span> I also buy bread and eggs there.</p>
 <p><span class="speaker">Anna:</span> How much are the eggs?</p>
 <p><span class="speaker">Carlos:</span> They are 4 dollars a dozen. Very fresh!</p></div>
-<div id="listenQuestions"><div class="q-block"><p>1. Where does Lisa buy vegetables?</p>
+<div id="listenQuestions"><div class="q-block"><p>1. Where does Carlos buy vegetables?</p>
 <label class="q-option" onclick="selectQ(this,'lq1','a')">At the supermarket</label>
 <label class="q-option" onclick="selectQ(this,'lq1','b')">At the farmers market</label>
 <label class="q-option" onclick="selectQ(this,'lq1','c')">At the bakery</label>
@@ -232,6 +232,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;
 </div></div>
 <div class="card" style="text-align:center">
 <button class="btn btn-orange" onclick="submitToTeacher()" id="submitBtn" style="width:100%;font-size:16px;padding:14px">📤 Submit to Teacher</button>
+<div id="submitStatus" style="display:none;margin-top:16px;padding:16px;border-radius:12px;text-align:center"></div>
 <div class="submit-success" id="submitSuccess"><h3>✅ Submitted!</h3><p>Your homework has been sent to your teacher.</p></div>
 <p style="color:#888;font-size:12px;margin-top:8px">This will open a Google Form with your scores.</p>
 </div>
@@ -243,9 +244,15 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;
 
 const SESSION='Class 9';
 const SPEAKING_LIMIT=25; // Classes 9-12 = 25s
-let sn='',sClass='',sc={l:0,v:0,w:0,s:0,g:0};
+let sn='',sClass='',name='',sc={l:0,v:0,w:0,s:0,g:0};
 let writingText='',spokenTranscript='',spokenText='';
 let selectedQ={};
+
+function setTeacher(sel){
+  var opt=sel.options[sel.selectedIndex];
+  var th=document.getElementById('teacherName');
+  if(th)th.value=opt?(opt.getAttribute('data-teacher')||''):'';
+}
 
 function goTo(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function startHomework(){
@@ -274,7 +281,7 @@ function speakLine(){
   if(dIdx>=dialogue.length) return;
   const line=dialogue[dIdx];
   utterance=new SpeechSynthesisUtterance(line.t);
-  const gender=line.g||(line.s==='Sara'||line.s==='Anna'||line.s==='B'?'f':'m');
+  const gender=line.g||'m';
   utterance.voice=getVoice(gender);
   utterance.rate=gender==='f'?0.9:0.8;
   utterance.pitch=gender==='f'?1.4:0.6;
@@ -378,7 +385,6 @@ function checkWriting(){
 // SPEAKING
 let isRec=false,recTime=0,recTimer=null,recognition=null;
 let autoStopTimer=null;
-recognition=null;
 const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(SpeechRecognition){
   recognition=new SpeechRecognition();
@@ -388,27 +394,22 @@ if(SpeechRecognition){
 function isRealSpeech(text){
   const w=text.trim().split(/\s+/).filter(Boolean);
   if(w.length<2)return false;
-  const realWords=['i','buy','where','how','much','is','are','at','the','shop','store','supermarket','market','bakery','price','dollar','dollars','like','get','much','cost'];
+  const realWords=['i','buy','where','how','much','is','are','at','the','shop','store','supermarket','market','bakery','price','dollar','dollars','like','get','cost'];
   return w.filter(x=>realWords.includes(x.toLowerCase().replace(/[^a-z]/g,''))).length>=1;
-}
-function setTeacher(sel){
-  var opt=sel.options[sel.selectedIndex];
-  var th=document.getElementById('teacherName');
-  if(th)th.value=opt?(opt.getAttribute('data-teacher')||''):'';
 }
 function toggleRec(){if(!isRec) startRec(); else stopRec();}
 function startRec(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){alert('Speech recognition not supported. Please use Chrome or Safari.');return;}
-  spokenText='';
-  const box=document.getElementById('transcriptBox');
-  if(box){box.textContent='';box.style.display='none';}
+  spokenText='';spokenTranscript='';
   isRec=true;recTime=0;
-  const mb=document.getElementById('micBtn')||document.getElementById('recBtn');
+  const mb=document.getElementById('micBtn');
   if(mb)mb.classList.add('recording');
-  const rs=document.getElementById('recStatus')||document.getElementById('statusText');
+  const rs=document.getElementById('statusText');
   if(rs)rs.textContent='Recording... tap again to stop';
-  recTimer=setInterval(function(){recTime++;const t=document.getElementById('recTimer')||document.getElementById('timer');if(t)t.textContent=Math.floor(recTime/60)+':'+String(recTime%60).padStart(2,'0');},1000);
+  const timer=document.getElementById('recTimer');
+  if(timer)timer.style.display='block';
+  recTimer=setInterval(function(){recTime++;if(timer)timer.textContent=Math.floor(recTime/60)+':'+String(recTime%60).padStart(2,'0');if(recTime>=SPEAKING_LIMIT){stopRec();}},1000);
   recognition=new SR();
   recognition.continuous=false;recognition.interimResults=true;recognition.lang='en-US';
   recognition.onstart=function(){if(rs)rs.textContent='Microphone active — speak now';};
@@ -418,12 +419,9 @@ function startRec(){
       if(e.results[i].isFinal){spokenText+=e.results[i][0].transcript+' ';}
       else{interim+=e.results[i][0].transcript;}
     }
-    // Store BEST-available transcript (final + interim) so scoring still works
-    // even if the user speaks briefly and the recognizer never finalizes.
     spokenTranscript=(spokenText+interim).trim();
     const t=document.getElementById('speakTranscriptText');if(t){t.textContent=spokenTranscript||'Listening...';}
     const b=document.getElementById('speakTranscriptBox');if(b){b.style.display='block';}
-    const b2=document.getElementById('transcriptBox');if(b2){b2.textContent=spokenTranscript||'Listening...';b2.style.display='block';}
   };
   recognition.onerror=function(e){
     if(e&&e.error==='not-allowed'){if(rs)rs.textContent='Microphone blocked — please allow access and try again.';isRec=false;clearInterval(recTimer);if(mb)mb.classList.remove('recording');}
@@ -434,13 +432,11 @@ function startRec(){
 function stopRec(){
   isRec=false;clearInterval(recTimer);
   if(recognition){try{recognition.stop();}catch(e){} recognition=null;}
-  const mb=document.getElementById('micBtn')||document.getElementById('recBtn');
+  const mb=document.getElementById('micBtn');
   if(mb)mb.classList.remove('recording');
-  const rs=document.getElementById('recStatus')||document.getElementById('statusText');
+  const rs=document.getElementById('statusText');
   if(rs)rs.textContent='Recording saved! Checking your speaking...';
-  const sn=document.getElementById('speakNext');if(sn)sn.disabled=false;
-  const sb=document.getElementById('sBtn');if(sb)sb.disabled=false;
-  // Wait for any trailing recognition chunk to post back, then score.
+  const snBtn=document.getElementById('speakNext');if(snBtn)snBtn.disabled=false;
   setTimeout(()=>scoreSpeaking(),1500);
 }
 
@@ -486,7 +482,7 @@ function resetSpeaking(){
   document.getElementById('speakTranscriptText').textContent='';
   document.getElementById('recordings').innerHTML='';
   document.getElementById('statusText').textContent='Tap the microphone to start recording';
-  spokenTranscript='';
+  spokenTranscript='';spokenText='';
 }
 
 // GRAMMAR
@@ -537,8 +533,9 @@ function submitToTeacher(){
   const btn=document.getElementById('submitBtn');
   if(btn){btn.disabled=true;btn.textContent='Submitting...';}
   const pct=Math.round((sc.l+sc.v+sc.w+sc.s+sc.g)/57*100);
-  const wt=writingText||document.getElementById('writingText')?document.getElementById('writingText').value.trim():'';
-  const st=spokenTranscript||document.getElementById('speakTranscriptText')?document.getElementById('speakTranscriptText').textContent:'';
+  const wt=writingText||(document.getElementById('writingText')?document.getElementById('writingText').value.trim():'');
+  const st=spokenTranscript||(document.getElementById('speakTranscriptText')?document.getElementById('speakTranscriptText').textContent:'');
+  const teacher=document.getElementById('teacherName').value||'';
   const formData=new FormData();
   formData.append('entry.154629934',sn||name||'');
   formData.append('entry.771629595',document.getElementById('className')?document.getElementById('className').value:sClass);
@@ -551,7 +548,7 @@ function submitToTeacher(){
   formData.append('entry.543147037',pct+'%');
   formData.append('entry.301386877',wt||'');
   formData.append('entry.879060890',st||'No transcript captured');
-  formData.append('entry.1451249480','A1');
+  formData.append('entry.1451249480',teacher);
   const status=document.getElementById('submitStatus');
   fetch('https://docs.google.com/forms/d/e/1FAIpQLSfxgLZofrw5wLjtEaU9K0xgJWqztxigBXxpHCXe2Ndi3UOpnQ/formResponse',{method:'POST',mode:'no-cors',body:formData})
     .then(function(){
@@ -564,8 +561,6 @@ function submitToTeacher(){
       if(status){status.innerHTML='Submission failed. Check your internet and try again.';status.style.display='block';status.style.background='#fef2f2';}
     });
 }
-
-
 </script>
 </body>
 </html>
