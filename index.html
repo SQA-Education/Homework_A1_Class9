@@ -569,5 +569,28 @@ function submitToTeacher(){
     .catch(function(){if(done)return;done=true;clearTimeout(timeoutId);showFailure();});
 }
 </script>
+<script>
+/* SQA portal save — homework/final saved to the portal WITHOUT login (submit-final),
+   matched by name+class for this level+session. Additive; leaves the Google Form post untouched. */
+(function(){
+  if(window.__sqaPortalSave)return; window.__sqaPortalSave=true;
+  var U="https://ponilnhyehnzycspksah.supabase.co",K="sb_publishable_YWM3O7i8aHWBGOZM-vAnEw_bR4XStKm",LV="A1",SS=9;
+  function g(id){var e=document.getElementById(id);return e?(''+e.value):'';}
+  function save(){
+    try{
+      var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
+      var cl=g('className')||g('studentClass')||g('classSelect')||'';
+      if(!nm)return;
+      var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
+      var mx=(typeof maxGrammar!=='undefined'&&maxGrammar)?maxGrammar:0;
+      var pct=null;try{if(typeof score!=='undefined'&&mx)pct=Math.round(score/mx*100);}catch(e){}
+      var sc={percent:pct,correct:(typeof score!=='undefined'?score:null),grammar:(typeof scoreGrammar!=='undefined'?scoreGrammar:null),grammar_max:(typeof maxGrammar!=='undefined'?maxGrammar:null)};
+      fetch(U+"/functions/v1/submit-final",{method:"POST",headers:{"Content-Type":"application/json","apikey":K,"Authorization":"Bearer "+K},body:JSON.stringify({name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:"",scores:sc})}).catch(function(){});
+    }catch(e){}
+  }
+  var _o=window.submitToTeacher;
+  if(typeof _o==='function'){window.submitToTeacher=function(){try{save();}catch(e){}return _o.apply(this,arguments);};}
+})();
+</script>
 </body>
 </html>
