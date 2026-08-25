@@ -580,12 +580,12 @@ function submitToTeacher(){
     try{
       var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
       var cl=g('className')||g('studentClass')||g('classSelect')||'';
-      if(!nm)return;
+      if(!nm&&!(new URLSearchParams(location.search).get('sid')||new URLSearchParams(location.search).get('email')))return;
       var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
       var mx=(typeof maxGrammar!=='undefined'&&maxGrammar)?maxGrammar:0;
       var pct=null;try{if(typeof score!=='undefined'&&mx)pct=Math.round(score/mx*100);}catch(e){}
       var sc={percent:pct,correct:(typeof score!=='undefined'?score:null),grammar:(typeof scoreGrammar!=='undefined'?scoreGrammar:null),grammar_max:(typeof maxGrammar!=='undefined'?maxGrammar:null)};
-      fetch(U+"/functions/v1/submit-final",{method:"POST",headers:{"Content-Type":"application/json","apikey":K,"Authorization":"Bearer "+K},body:JSON.stringify({name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:"",scores:sc})}).catch(function(){});
+      fetch(U+"/functions/v1/submit-final",{method:"POST",headers:{"Content-Type":"application/json","apikey":K,"Authorization":"Bearer "+K},body:JSON.stringify({sid:(new URLSearchParams(location.search).get('sid')||''),email:(new URLSearchParams(location.search).get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:"",scores:sc})}).catch(function(){});
     }catch(e){}
   }
   var _o=window.submitToTeacher;
