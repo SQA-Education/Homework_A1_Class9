@@ -576,20 +576,36 @@ function submitToTeacher(){
   if(window.__sqaPortalSave)return; window.__sqaPortalSave=true;
   var U="https://ponilnhyehnzycspksah.supabase.co",K="sb_publishable_YWM3O7i8aHWBGOZM-vAnEw_bR4XStKm",LV="A1",SS=9;
   function g(id){var e=document.getElementById(id);return e?(''+e.value):'';}
-  function save(){
-    try{
-      var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
-      var cl=g('className')||g('studentClass')||g('classSelect')||'';
-      if(!nm&&!(new URLSearchParams(location.search).get('sid')||new URLSearchParams(location.search).get('email')))return;
-      var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
-      var mx=(typeof maxGrammar!=='undefined'&&maxGrammar)?maxGrammar:0;
-      var pct=null;try{if(typeof score!=='undefined'&&mx)pct=Math.round(score/mx*100);}catch(e){}
-      var sc={percent:pct,correct:(typeof score!=='undefined'?score:null),grammar:(typeof scoreGrammar!=='undefined'?scoreGrammar:null),grammar_max:(typeof maxGrammar!=='undefined'?maxGrammar:null)};
-      fetch(U+"/functions/v1/submit-final",{method:"POST",headers:{"Content-Type":"application/json","apikey":K,"Authorization":"Bearer "+K},body:JSON.stringify({sid:(new URLSearchParams(location.search).get('sid')||''),email:(new URLSearchParams(location.search).get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:"",scores:sc})}).catch(function(){});
-    }catch(e){}
+  function realScores(){
+    var o=null;
+    try{ if(typeof sc!=='undefined'&&sc&&typeof sc==='object')o=sc; }catch(e){}
+    try{ if(!o&&typeof scores!=='undefined'&&scores&&typeof scores==='object')o=scores; }catch(e){}
+    if(o){ for(var k in o){ if(typeof o[k]==="number") return o; } }
+    var mx=(typeof maxGrammar!=="undefined"&&maxGrammar)?maxGrammar:0;
+    var pct=null;try{if(typeof score!=="undefined"&&mx)pct=Math.round(score/mx*100);}catch(e){}
+    return {percent:pct,correct:(typeof score!=="undefined"?score:null),grammar:(typeof scoreGrammar!=="undefined"?scoreGrammar:null),grammar_max:(typeof maxGrammar!=="undefined"?maxGrammar:null)};
   }
+  function payload(){
+    var q=new URLSearchParams(location.search);
+    var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
+    var cl=g('className')||g('studentClass')||g('classSelect')||'';
+    if(!nm&&!(q.get('sid')||q.get('email')))return null;
+    var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
+    return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:'',scores:realScores()};
+  }
+  function portalSave(){
+    var body=payload(); if(!body)return Promise.resolve("skip");
+    function attempt(n){
+      return fetch(U+"/functions/v1/submit-final",{method:"POST",keepalive:true,headers:{"Content-Type":"application/json","apikey":K,"Authorization":"Bearer "+K},body:JSON.stringify(body)})
+        .then(function(r){return r.json()})
+        .then(function(j){ if(j&&(j.status==="ok"||j.action||j.matchedBy))return "ok"; if(j&&j.status==="not_enrolled")return "not_enrolled"; return "soft"; })
+        .catch(function(){ return n<1?attempt(n+1):"soft"; });
+    }
+    return attempt(0);
+  }
+  function markSaved(){ try{ var el=document.getElementById("submitStatus"); if(el){el.style.display="block";el.textContent="\u2713 Submitted \u2014 saved to your teacher's portal.";el.style.color="#15803d";} }catch(e){} }
   var _o=window.submitToTeacher;
-  if(typeof _o==='function'){window.submitToTeacher=function(){try{save();}catch(e){}return _o.apply(this,arguments);};}
+  if(typeof _o==='function'){window.submitToTeacher=function(){var ret=_o.apply(this,arguments);try{portalSave().then(function(s){if(s==='ok')markSaved();});}catch(e){}return ret;};}
 })();
 </script>
 <script>
