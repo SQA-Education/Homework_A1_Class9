@@ -591,7 +591,7 @@ function submitToTeacher(){
     var cl=g('className')||g('studentClass')||g('classSelect')||'';
     if(!nm&&!(q.get('sid')||q.get('email')))return null;
     var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
-    return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:'',scores:realScores()};
+    return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:(function(){try{var t=(typeof spokenText!=='undefined'&&spokenText)?(''+spokenText):'';t=(t||'').trim();if(t.length<2&&window.__typedSpeech)t=(''+window.__typedSpeech).trim();if(t.length<2){var b=document.getElementById('transcriptBox')||document.getElementById('transcript');if(b){var bt=((b.value||b.textContent)||'').replace(/^transcript:\s*/i,'').trim();if(bt.length>t.length)t=bt;}}return t;}catch(e){return '';}})(),scores:realScores()};
   }
   function portalSave(){
     var body=payload(); if(!body)return Promise.resolve("skip");
