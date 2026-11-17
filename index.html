@@ -85,7 +85,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;
 .submit-success{background:#e8f8f0;border:2px solid #27ae60;border-radius:12px;padding:16px;margin:12px 0;display:none;text-align:center}
 .submit-success h3{color:#27ae60}
 </style>
-</head>
+<style>/* __sqaNoPullRefresh: stop accidental pull-to-refresh wiping homework */html,body{overscroll-behavior-y:contain}</style></head>
 <body>
 <div class="header">
 <img src="../logo.png" onerror="this.outerHTML='<div class=\'logo-text\'>📚 SQA Education</div>'" alt="SQA Education">
@@ -700,7 +700,7 @@ try{
   function activeSec(){var s=document.querySelector('.section.active');return s?s.id:'';}
   function secs(){return Array.prototype.slice.call(document.querySelectorAll('.section[id]'));}
   function fields(){return Array.prototype.slice.call(document.querySelectorAll('input,textarea,select'));}
-  function isResults(s){return /result|score/i.test(s)||s==='s5'||s==='s6';}
+  function isResults(s){if(/result|score/i.test(s))return true;var a=secs();return !!(a.length&&a[a.length-1].id===s&&(s==='s5'||s==='s6'));}
   var t=null, ind=null;
   function flash(){if(!ind){ind=document.createElement('div');ind.style.cssText='position:fixed;bottom:14px;right:14px;background:#1e9e5a;color:#fff;padding:7px 13px;border-radius:20px;font:600 13px system-ui;z-index:99998;opacity:0;transition:opacity .3s;box-shadow:0 3px 12px rgba(0,0,0,.2)';ind.textContent='✓ Saved';document.body.appendChild(ind);}ind.style.opacity='1';clearTimeout(ind._t);ind._t=setTimeout(function(){ind.style.opacity='0';},1200);}
   function snap(){var st={sec:activeSec(),h:{},f:[],g:{},t:Date.now()};
